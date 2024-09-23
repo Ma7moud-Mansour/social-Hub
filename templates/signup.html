@@ -3,153 +3,254 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
-    <title>sign up</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <title>Sign Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+        :root {
+            --white: #fff;
+            --black: #000; 
+            --lightBlue: #17a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f8fa;
+        }
+
+ .navbar {
+    background-color: #eff5f8c2;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* تغيير لتوزيع العناصر */
+    align-items: center; /* محاذاة العناصر عموديًا */
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 20px; /* إضافة مسافة على اليسار */
+}
+
+.navbar .site-name {
+    font-weight: bold;
+    color: rgb(34, 2, 2);
+    font-size: 1.5rem; 
+}
+
+.navbar a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 30px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: rgba(61, 60, 60, 0.2);
+    border-radius: 5px;
+}
+.profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 20px;
+        }
+
+        .wrapper {
+            position: relative;
+            background: linear-gradient(#999898d5,#fffafad3) ;
+            width: 30%;
+            max-width: 750px;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-top: 50px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+            color: var(--black);
+            border: #000;
+        }
+
+        .input-box {
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .input {
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            color: var(--black);
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid var(--black);
+            transition: border-bottom-color 0.5s;
+        }
+
+        .input:focus,
+        .input:not(:placeholder-shown) {
+            border-bottom-color: var(--lightBlue);
+        }
+
+        .label {
+            position: absolute;
+            left: 0;
+            bottom: 10px;
+            font-size: 16px;
+            color: var(--black);
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .input:focus + .label,
+        .input:not(:placeholder-shown) + .label {
+            bottom: 40px;
+            font-size: 12px;
+            color: var(--lightBlue);
+        }
+
+        .button {
+            width: 100%;
+            height: 45px;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: var(--lightBlue);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .linkTxt {
+            font-size: 14px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .linkTxt a {
+            color: blue;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f8fa;
+            width: 100%;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100">
+<body>
 
+    <div class="navbar">
+        <div class="site-name">Social Hub</div>
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">Help</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
 
-    <div id="wrapper" class="flex flex-col justify-between h-screen">
-
-        <!-- header-->
-        <div class="bg-white py-4 shadow dark:bg-gray-800">
-            <div class="max-w-6xl mx-auto">
-
-
-                <div class="flex items-center lg:justify-between justify-around">
-
-                    <a href="trending.html">
-                        <b><h1 style="font-size: 1.5rem;">Social Hub</h1></b>
-                    </a>
-
-                    <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
-                        
-                        <a href="/signin" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Login</a>
-                    </div>
-
-                </div>
-            </div>
         </div>
+    </div>
+    
 
-        <!-- Content-->
+    <div class="wrapper">
+        <h1 class="title">Sign Up</h1>
 
         <div>
-            <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
-                <h1 class="lg:text-3xl text-xl font-semibold mb-6"> Sign in</h1>
-                <!--<p class="mb-2 text-black text-lg"> Register to manage your account </p>-->
-                
-                <div>
-                    <style>
-                        h5{
-                            color: red;
-                        }
-                    </style>
-                    {% for message in messages %}
-                    <h5>{{message}}</h5>
-                    {% endfor %}
-                </div>
-                
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <!--<div class="flex lg:flex-row flex-col lg:space-x-2">
-                        <input type="text" placeholder="First Name"  class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                        <input type="text" placeholder="Last Name" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                    </div>-->
-                    <input type="text" name="username" placeholder="Username" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                    <input type="email" name="email" placeholder="email" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                    <input type="password" name="password" placeholder="Password" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                    <input type="password" name="password2" placeholder="Confirm Password" class="bg-gray-200 mb-2 shadow-none  dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-                    <div class="flex justify-start my-4 space-x-1">
-                        <div class="checkbox">
-                            <input type="checkbox" id="chekcbox1" checked>
-                            <label for="chekcbox1"><span class="checkbox-icon"></span> I Agree</label>
-                        </div>
-                        <a href="#"> Terms and Conditions</a>
-                    </div>
-                    <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Login</button>
-                    <div class="text-center mt-5 space-x-2">
-                        <p class="text-base"> Do you have an account? <a href="/signin"> Login </a></p>
-                    </div>
-                </form>
-            </div>
+            {% for message in messages %}
+            <h5 class="error-message">{{ message }}</h5>
+            {% endfor %}
         </div>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <div class="input-box">
+                <input type="text" name="username" id="username" placeholder=" " class="input" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" id="email" placeholder=" " class="input" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" id="password" placeholder=" " class="input" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password2" id="password2" placeholder=" " class="input" required>
+                <label for="password2">Confirm Password</label>
+            </div>
         
-        <!-- Footer -->
-
-        <div class="lg:mb-5 py-3 uk-link-reset">
-            <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
-                <div class="flex space-x-2 text-gray-700 uppercase">
-                    <a href="#"> About</a>
-                    <a href="#"> Help</a>
-                    <a href="#"> Terms</a>
-                    <a href="#"> Privacy</a>
-                </div>
-                <p class="capitalize"> © copyright 2020 by Ma7moud Mansour</p>
+            <button type="submit" class="button">Sign Up</button>
+            <div class="linkTxt">
+                <p>Do you have an account? <a href="/signin">Login</a></p>
             </div>
-        </div>
-
+        </form>
     </div>
 
-    <!--<script>
-        
-        (function (window, document, undefined) {
-            'use strict';
-            if (!('localStorage' in window)) return;
-            var nightMode = localStorage.getItem('gmtNightMode');
-            if (nightMode) {
-                document.documentElement.className += ' dark';
-            }
-        })(window, document);
-    
-    
-        (function (window, document, undefined) {
-    
-            'use strict';
-    
-            // Feature test
-            if (!('localStorage' in window)) return;
-    
-            // Get our newly insert toggle
-            var nightMode = document.querySelector('#night-mode');
-            if (!nightMode) return;
-    
-            // When clicked, toggle night mode on or off
-            nightMode.addEventListener('click', function (event) {
-                event.preventDefault();
-                document.documentElement.classList.toggle('dark');
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('gmtNightMode', true);
-                    return;
-                }
-                localStorage.removeItem('gmtNightMode');
-            }, false);
-    
-        })(window, document);
-    </script>-->
+    <footer>
+        <p>&copy; 2024 by ARMY Teem.</p>
+    </footer>
 
-    <!-- Scripts
-    ================================================== -->
     <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'assets/js/uikit.js' %}"></script>
     <script src="{% static 'assets/js/simplebar.js' %}"></script>
     <script src="{% static 'assets/js/custom.js' %}"></script>
-
-
 </body>
-
 
 </html>
