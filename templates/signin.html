@@ -455,6 +455,9 @@ form .linkTxt{
         <!-- Login Form -->
         <div class="form-box login">
             <h2 class="title animation" style="--i:0; --j:21">Login</h2>
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="input-box animation" style="--i:1; --j:22">
