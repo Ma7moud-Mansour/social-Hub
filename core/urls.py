@@ -12,4 +12,5 @@ urlpatterns = [
     path('like-post', views.Like_post, name = 'like-post'),
     path('signin', views.signin, name = 'signin'),
     path('logout', views.logout, name = 'logout'),
+    path('profile/<str:pk>', views.profile, name = 'profile'),
 ]
