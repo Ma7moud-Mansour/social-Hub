@@ -68,6 +68,8 @@ def profile(request, pk):
         'user_post_length' : user_post_length
     }
     return render(request, 'profile.html', context)
+
+
 @login_required(login_url='signin')
 def follow(request):
     if request.method == 'POST' :
