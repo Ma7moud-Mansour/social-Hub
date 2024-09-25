@@ -5,119 +5,601 @@
 
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
 	<title>Profile - {{user_profile.user.username}}</title>
-<!-- <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> -->
-    
-    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/color.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
 
+	<link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/color.css' %}">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<style>
+		.navbar {
+			background-color: #eff5f8c2;
+			padding: 10px 20px;
+			position: relative;
+			margin-top: 0;
+			z-index: 1000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-radius: 10px;
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		.nav-links {
+			display: flex;
+			/* استخدام flex */
+			gap: 20px;
+			/* إضافة gap بين الروابط */
+			margin-left: auto;
+			/* محاذاة الروابط إلى اليمين */
+		}
+
+		.navbar .site-name {
+			font-weight: bold;
+			font-size: 1.5rem;
+			margin-right: auto;
+			padding: 10px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			transition: color 0.3s;
+		}
+
+		.light-mode .navbar .site-name {
+			color: rgb(34, 2, 2);
+		}
+
+		.dark-mode .navbar .site-name {
+			color: #ffffff;
+		}
+
+		.navbar a {
+			color: rgb(0, 0, 0);
+			text-decoration: none;
+			font-weight: bold;
+			padding: 10px 15px;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+		}
+
+		.navbar a:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+
+		.profile-icon {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			object-fit: cover;
+			margin-left: 20px;
+		}
+
+		.container {
+			margin-top: 20px;
+			margin-left: auto;
+			/* محاذاة تلقائية */
+			margin-right: auto;
+			/* محاذاة تلقائية */
+			height: 100%;
+			width: 600px;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.container:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.search-result-item {
+			border: 1px solid #0c0c0c;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			padding: 15px;
+			margin-bottom: 15px;
+			display: flex;
+		}
+
+		.image-link {
+			margin-right: 15px;
+		}
+
+		.image {
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.search-result-item-body {
+			flex: 1;
+		}
+
+		.search-result-item-heading a {
+			color: rgb(34, 34, 34);
+			text-decoration: none;
+		}
+
+		.search-result-item-heading a:hover {
+			text-decoration: underline;
+		}
+
+		.info {
+			font-weight: bold;
+			margin-right: 100px;
+			color: #666;
+		}
+
+		.description {
+			color: #999;
+		}
+
+		footer {
+			font-size: larger;
+			padding: 10px;
+			text-align: center;
+			width: 100%;
+			margin-top: 145px;
+			bottom: 0;
+			border-top: 2px solid #cccccc62;
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+		.light-mode footer {
+			background-color: #eff5f8c2;
+			color: #333;
+		}
+
+		.dark-mode footer {
+			background-color: #1a1a1a;
+			color: #ffffff;
+		}
+
+
+		.tto {
+			margin-left: 170px;
+			padding: 0px;
+		}
+
+		.btn {
+			background-color: rgba(165, 42, 42, 0.521);
+			color: #ffffff;
+			/* لون النص في الأزرار */
+			transition: background-color 0.3s;
+		}
+
+		.btn:hover {
+			background-color: rgba(165, 42, 42, 0.7);
+			cursor: pointer;
+		}
+
+		/* زر الوضع الخفيف */
+		.light-mode .btn {
+			background-color: #007bff;
+			/* لون زر الوضع الخفيف */
+			color: #ffffff;
+			/* لون النص */
+		}
+
+		/* زر الوضع الداكن */
+		.dark-mode .btn {
+			background-color: #343a40;
+			/* لون زر الوضع الداكن */
+			color: #ffffff;
+			/* لون النص */
+		}
+
+		/* نصوص الأزرار الأخرى */
+		.navbar a {
+			color: rgb(0, 0, 0);
+			/* لون النص في الروابط */
+		}
+
+		.dark-mode .navbar a {
+			color: #ffffff;
+			/* لون النص في الروابط في الوضع الداكن */
+		}
+
+		body {
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+		.light-mode {
+			background-color: #ffffff;
+			color: #000000;
+		}
+
+		.dark-mode {
+			background-color: #121212;
+			color: #ffffff;
+		}
+
+		.dark-mode .navbar {
+			background-color: #1a1a1a;
+		}
+
+		@media (max-width: 768px) {
+			.navbar {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.nav-links {
+				margin-left: 0;
+			}
+
+			.container {
+				width: 90%;
+				margin-left: auto;
+				/* محاذاة تلقائية */
+				margin-right: auto;
+				/* محاذاة تلقائية */
+			}
+
+			.tto {
+				margin-left: 0;
+			}
+
+			.img {
+				border: 0;
+			}
+
+		}
+	</style>
 </head>
+
 <body>
-<!--<div class="se-pre-con"></div>-->
-<div class="theme-layout">
-	
+
+	<form action="search" method="POST">
+		{% csrf_token %}
+		<header style="margin-top: -23px;">
+			<div class="navbar">
+				<div class="site-name">Social Hub</div>
+				<input type="text" name="username" placeholder="Search..." />
+				<button type="submit"><i class="fa fa-search fa-1x"></i></button>
+				<div class="nav-links">
+					<a href="{% url 'index' %}" class="XX">HOME</a>
+					<a href="/settings">Account Settings</a>
+					<a href="/logout" class="btn">Log Out</a>
+					<a href="#" id="toggle-theme" class="theme-toggle">Toggle Theme</a>
+
+					<a href="/profile/{{ user.username }}" class="tto"><b>{{ user.username }}</b></a>
+				</div>
+				<img src="{{ user_profile.profileimg.url }}" class="profile-icon" alt="Profile Picture">
+			</div>
+		</header>
+	</form>
+	<style>
+		.feature-photo {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 15px;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			margin: 10px 0;
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+		/* وضعية الوضع الداكن */
+		body.dark-mode .feature-photo {
+			background-color: rgba(104, 104, 104, 0.9);
+			/* لون خلفية داكن */
+			color: white;
+			/* لون النص */
+			box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+			/* ظل أخف */
+		}
+
+
+		.feature-photo img {
+			border-radius: 10px;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.add-btn {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 20px 0;
+		}
+
+		.add-btn span {
+			color: white;
+			font-size: 1.5rem;
+		}
+
+		.add-btn button {
+			background-color: #ffc0cb;
+			border: none;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+
+		.add-btn button:hover {
+			background-color: var(--lightBlue);
+			transform: scale(1.05);
+		}
+
+		.user-avatar img {
+			margin-top: 20%;
+			border-radius: 10%;
+			border: 0;
+			max-width: 100%;
+			margin-bottom: 80px;
+			height: 100%;
+
+		}
+
+		.timeline-info h5 {
+			color: black;
+			font-size: 1.8rem;
+			margin-bottom: 10px;
+		}
+
+		.add-btn {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 20px 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			/* خلفية داكنة */
+			padding: 15px;
+			border-radius: 10px;
+		}
+
+		.add-btn span {
+			color: white;
+			font-size: 1.5rem;
+			margin: 0 10px;
+			/* إضافة مسافة بين العناصر */
+		}
+
+		.add-btn button {
+			background-color: #ffc0cb;
+			border: none;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+
+		.add-btn button:hover {
+			background-color: #ff69b4;
+			/* لون أفتح عند التحويم */
+			transform: scale(1.05);
+		}
+
+		.add-btn a {
+			text-decoration: none;
+			/* إزالة خط التسطير */
+		}
+
+		/* إضافة تأثيرات على النصوص عند التحويم */
+		.add-btn span:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+		.bio {
+			padding-bottom: 100px;
+			margin-top: 0;
+
+			margin-bottom: 5px;
+			font-size: 1.2rem;
+			color: #333;
+			line-height: 1.6;
+		}
+
+		M1 {
+			margin-top: 40px;
+		}
+
+		figure {
+			border: 0;
+		}
+
+		.container-fluid {
+			border: 0;
+		}
+	</style>
+	<script>
+		const toggleTheme = document.getElementById('toggle-theme');
+
+		toggleTheme.addEventListener('click', (event) => {
+			event.preventDefault(); // لمنع الانتقال للرابط
+			document.body.classList.toggle('dark-mode');
+			document.body.classList.toggle('light-mode');
+		});
+	</script>
+
+
+
+	<!--<div class="se-pre-con"></div>-->
+	<div class="theme-layout">
+
 	</div>
-	
+
 	<section>
-			<div class="feature-photo">
-				<figure><img src="{% static 'images/resources/timeline-1.jpg' %}" alt=""></figure>
-				<form action="/follow" method="POST">
-					{% csrf_token %}
-					<div class="add-btn">
-					<span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>
+		<div class="feature-photo">
+			<figure><img src="{% static 'images/resources/timeline-1.jpg' %}" alt=""></figure>
+			<form action="/follow" method="POST">
+				{% csrf_token %}
+				<div class="add-btn">
+
 
 					<!-- User posts section  -->
 					{% if user_post_length == 0 %}
-					<span style="color: white; font-size: 27px;"><b>No Posts</b></span>
+					<span><b>No Posts</b></span>
 					{% elif user_post_length == 1 %}
-					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Post</b></span>
+					<span><b>{{user_post_length}} Post</b></span>
 					{% else %}
-					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Posts</b></span>
+					<span><b>{{user_post_length}} Posts</b></span>
 					{% endif %}
 					<!--  -->
-					
+
 					{% if user_followers == 0 or user_followers == 1 %}
-					<span style="color: white; font-size: 27px;"><b>{{user_followers}} follower </b></span>
+					<span><b>{{user_followers}} follower </b></span>
 					{% else %}
-					<span style="color: white; font-size: 27px;"><b>{{user_followers}} followers</b></span>
+					<span><b>{{user_followers}} followers</b></span>
 					{% endif %}
 
-					<span style="color: white; font-size: 27px;"><b>{{user_following}} following</b></span>
+					<span><b>{{user_following}} following</b></span>
 					<input type="hidden" value="{{user.username}}" name="follower" />
-					<input type="hidden" value="{{user_object.username}}" name="user" />	
+					<input type="hidden" value="{{user_object.username}}" name="user" />
 
 					{% if user_object.username == user.username %}
-					<a href="/settings" data-ripple=""><button type="button" style="background-color: #ffc0cb; border: #ffc0cb;">Account Settings</button></a>
+					<a href="/settings" data-ripple=""><button type="button">Account Settings</button></a>
 					{% else %}
-					<a data-ripple=""><button type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</button></a>
+					<a data-ripple=""><button type="submit">{{button_text}}</button></a>
 					{% endif %}
-					</div>
-				</form>
+				</div>
+			</form>
 
-				<!-- <form class="edit-phto">
+			<!-- <form class="edit-phto">
 					<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
 						Upload Cover Photo
 					<input type="file"/>
 					</label>
 				</form> -->
-				<div class="container-fluid">
-					<div class="row merged">
-						<div class="col-lg-2 col-sm-3">
-							<div class="user-avatar">
-								<figure>
-									<img src={{user_profile.profileimg.url}} style="height: 250px; width: 100%;" alt="">
-									<!-- <form class="edit-phto">
-										<i class="fa fa-camera-retro"></i>
-										<label class="fileContainer">
-											<a href="#account-settings">Upload Profile Photo</a>
-										</label>
-									</form> -->
-								</figure>
-							</div>
+			<div class="container-fluid">
+				<div class="row merged">
+					<div class="col-lg-2 col-sm-3">
+						<div class="user-avatar">
+							<figure>
+								<img src={{user_profile.profileimg.url}} alt="">
+								<form class="edit-phto">
+									<i class="fa fa-camera-retro"></i>
+									<label class="fileContainer">
+										<input type="file" name="image" class="input"
+											onchange="previewBackground(event)" />
+									</label>
+								</form>
+							</figure>
 						</div>
-						<div class="col-lg-10 col-sm-9">
-							<div class="timeline-info">
-								<ul>
-									<li class="admin-name">
-									  <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
-									  <!--<span>Group Admin</span>-->
-									</li>
-									<!--<li>
-										<a class="" href="javascript:void(0)" title="" data-ripple="">Go live!</a>
-										<a class="" href="javascript:void(0)" title="" data-ripple="">Music</a>
-										<a class="" href="emporium/index-3.html" title="" data-ripple="">Emporium</a>
-										<a class="" href="fitness/index.html" title="" data-ripple="">Health Inspection</a>
-										<a class="" href="settings/account-setting.html" title="" data-ripple="">Settings</a>
-										<a class="" href="javascript:void(0)" title="" data-ripple="">Upload</a>
-										<a class="" href="time-line.html" title="" data-ripple="">time line</a>
-										<a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
-										<a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
-										<a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
-										<a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
-										<a class="" href="about.html" title="" data-ripple="">about</a>
-										<a class="" href="#" title="" data-ripple="">more</a>
+					</div>
+					<div class="col-lg-10 col-sm-9">
+						<div class="timeline-info">
+							<ul>
+								<li class="admin-name">
+									<h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;">
+										<b>@{{user_profile.user.username}}</b>
+										<div class="bio">
+											{{user_profile.bio}}
+										</div>
+										<!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>-->
 
-									</li>-->
-								</ul>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section><!-- top area -->
-		<section>
-			<div class="bio">
-				{{user_profile.bio}}
-			</div>
-		</section>
-		
+
+		</div>
+
+
+	</section><!-- top area -->
+
+	<style>
+		:root {
+			--background-color-light: #ffffff;
+			/* خلفية فاتحة */
+			--background-color-dark: #2a2a2a;
+			/* خلفية داكنة */
+			--text-color-light: #333333;
+			/* لون النص الفاتح */
+			--text-color-dark: #f0f0f0;
+			/* لون النص الداكن */
+			--button-color: #1877f2;
+			/* لون الزر */
+			--button-hover-color: #0e68d1;
+			/* لون أغمق عند التحويم */
+		}
+
+		/* إعدادات عامة للمنشورات */
+		.post {
+			background-color: var(--background-color-dark);
+			border-radius: 10px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			margin: 20px 0;
+			padding: 15px;
+			transition: box-shadow 0.3s;
+		}
+
+		/* تأثير عند التحويم */
+		.post:hover {
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+		}
+
+		/* إعدادات رأس المنشور */
+		.post-header {
+			display: flex;
+			align-items: center;
+		}
+
+		.post-header img {
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			margin-right: 10px;
+		}
+
+		.post-header h5 {
+			font-size: 1.2rem;
+			color: var(--text-color-dark);
+			margin: 0;
+		}
+
+		/* إعدادات محتوى المنشور */
+		.post-content {
+			margin: 15px 0;
+			font-size: 1rem;
+			color: var(--text-color-dark);
+		}
+
+		/* إعدادات الصور داخل المنشور */
+		.post-content img {
+			max-width: 100%;
+			border-radius: 10px;
+		}
+
+		/* إعدادات الأزرار في أسفل المنشور */
+		.post-footer {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+		}
+
+		.post-footer button {
+			background-color: var(--button-color);
+			color: #fff;
+			border: none;
+			border-radius: 20px;
+			padding: 8px 15px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		.post-footer button:hover {
+			background-color: var(--button-hover-color);
+		}
+
+		/* إضافة فئات لتغيير الأوضاع */
+		.dark-mode .post {
+			background-color: var(--background-color-dark);
+		}
+
+		.dark-mode .post-header h5,
+		.dark-mode .post-content {
+			color: var(--text-color-dark);
+		}
+	</style>
 	<section>
 		<div class="gap gray-bg">
 			<div class="container-fluid">
@@ -126,56 +608,140 @@
 						<div class="row" id="page-contents">
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									
-									
-									
+									<!-- محتوى الشريط الجانبي -->
 								</aside>
 							</div><!-- sidebar -->
-							
-
-
-
-
-
-
-
-
 
 							<div class="col-lg-6">
 								<div class="central-meta">
 									<ul class="photos">
-
-
 										{% for post in user_posts %}
-										<li>
-											<a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt=""></a>
+										<li class="post">
+											<a class="strip" href="{{post.image.url}}" title=""
+												data-strip-group="mygroup" data-strip-group-options="loop: false">
+												<img src="{{post.image.url}}" class="photo-img" alt="">
+											</a>
 										</li>
 										{% endfor %}
-										
-										
 									</ul>
-									<!--<div class="lodmore"><button class="btn-view btn-load-more"></button></div>-->
 								</div><!-- photos -->
-							</div><!-- centerl meta -->
+							</div><!-- central meta -->
+
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									
+									<!-- محتوى الشريط الجانبي -->
 								</aside>
 							</div><!-- sidebar -->
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</section>
 
-	
-	
-	<script data-cfasync="false" src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script src="{% static 'js/main.min.js' %}"></script>
-	<script src="{% static 'js/script.js' %}"></script>
+	<style>
+		/* إعدادات عامة للصفحة */
+		:root {
+			--background-color-light: #ffffff;
+			/* خلفية فاتحة */
+			--background-color-dark: #2a2a2a;
+			/* خلفية داكنة */
+			--text-color-light: #333333;
+			/* لون النص الفاتح */
+			--text-color-dark: #f0f0f0;
+			/* لون النص الداكن */
+			--button-color: #1877f2;
+			/* لون الزر */
+			--button-hover-color: #0e68d1;
+			/* لون أغمق عند التحويم */
+		}
+		/* إعدادات للفراغات */
+		.gap {
+			padding: 20px 0;
+		}
 
-</body>	
+		/* إعدادات الصور */
+		.photos {
+			display: flex;
+			flex-wrap: wrap;
+			/* يسمح بتوزيع الصور */
+			list-style: none;
+			/* إزالة النقاط من القائمة */
+			padding: 0;
+			/* إزالة الحشوة */
+		}
+
+		.photos li {
+			margin: 10px;
+			/* مسافة بين الصور */
+			width: calc(33.33% - 20px);
+			/* عرض الصورة (3 صور في الصف) */
+			overflow: hidden;
+			/* قص أي محتوى زائد */
+			border-radius: 10px;
+			/* زوايا دائرية */
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+			/* ظل داكن */
+			transition: transform 0.3s;
+			/* تأثير عند التحويم */
+		}
+
+		.photos li:hover {
+			transform: scale(1.05);
+			/* تكبير الصورة عند التحويم */
+		}
+
+		.photo-img {
+			width: 100%;
+			/* جعل الصورة تأخذ كامل العنصر */
+			border-radius: 10px;
+			/* زوايا دائرية للصورة */
+			display: block;
+			/* جعلها كتلة */
+		}
+
+		/* إعدادات الشريط الجانبي */
+		.sidebar {
+			background-color: rgba(255, 255, 255, 0.1);
+			/* خلفية داكنة مع شفافية */
+			border-radius: 10px;
+			/* زوايا دائرية */
+			padding: 20px;
+			/* حشوة داخلية */
+			margin: 20px 0;
+			/* مسافة من العناصر الأخرى */
+		}
+	</style>
+
+
+
+	<script>
+		function previewBackground(event) {
+			const file = event.target.files[0];
+			if (file) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					document.body.style.backgroundImage = `url(${e.target.result})`;
+					document.body.style.backgroundSize = 'cover';
+					document.body.style.backgroundPosition = 'center';
+					document.body.style.backgroundRepeat = 'no-repeat';
+
+					// Update the profile icon
+					document.getElementById('profile-icon').src = e.target.result;
+				};
+				reader.readAsDataURL(file);
+			}
+		}
+	</script>
+
+	<script data-cfasync="false"
+		src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+	<script src="{% static 'js/main.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+	<footer>
+		<p>&copy; 2024 by A-R-M-Y Teem.</p>
+	</footer>
+</body>
 
 
 </html>

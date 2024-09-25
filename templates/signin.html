@@ -27,7 +27,7 @@
 }
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* تغيير الاتجاه إلى عمودي */
     align-items: center;
     min-height: 100vh;
 }
@@ -341,34 +341,50 @@ form .linkTxt{
     transform: rotate(-11deg) skewY(-40deg);
     transition-delay: 1.2s;
 }
+
 .navbar {
-    background-color: #f5f8fac2; 
+    background-color: #eff5f8c2;
     padding: 10px;
-    position: sticky; 
-    top: 0; 
-    z-index: 1000; 
-    display: flex; 
-    justify-content: center; 
-    margin-top: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* تغيير لتوزيع العناصر */
+    align-items: center; /* محاذاة العناصر عموديًا */
     border-radius: 10px;
-    width: 1000px;
-    
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 20px; /* إضافة مسافة على اليسار */
+}
+
+.navbar .site-name {
+    font-weight: bold;
+    color: rgb(34, 2, 2);
+    font-size: 1.5rem; 
 }
 
 .navbar a {
     color: rgb(0, 0, 0);
-    text-decoration: none; 
-    font-weight: bold; 
-    padding: 10px 30px; 
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 30px;
     transition: background-color 0.3s;
 }
 
 .navbar a:hover {
     background-color: rgba(61, 60, 60, 0.2);
-    border-radius: 5px; 
+    border-radius: 5px;
 }
+.profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 20px;
+        }
 /* .logo {
-    height: 40px; /**/
+    height: 40px; /* ارتفاع الشعار */
+    /* margin-right: 15px; /* فراغ بين الشعار والروابط */
     .wrapper .form-box.register {
     padding: 0 40px 0 60px;
     right: 0;
@@ -441,13 +457,17 @@ form .linkTxt{
 </style>
 
 <body>
-    <div class="flex space-x-2 text-gray-700 uppercase navbar">
-        <!-- <img src="{% static 'social_book/static/images/12-27.jpg' %}" alt="Logo" class="logo"> -->
-        <a href="#">About</a>
-        <a href="#">Help</a>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
+    <div class="navbar">
+        <div class="site-name">Social Hub</div>
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">Help</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+
+        </div>
     </div>
+    
     <div class="wrapper">
         <span class="rotate-bg"></span>
         <span class="rotate-bg2"></span>
@@ -455,9 +475,6 @@ form .linkTxt{
         <!-- Login Form -->
         <div class="form-box login">
             <h2 class="title animation" style="--i:0; --j:21">Login</h2>
-            {% for message in messages %}
-            <h5>{{message}}</h5>
-            {% endfor %}
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="input-box animation" style="--i:1; --j:22">
@@ -482,7 +499,9 @@ form .linkTxt{
             <h3 class="animation" style="--i:0; --j:20"><span>Welcome to </span>Social Hub!</h3>
             <p class="animation" style="--i:1; --j:21">best social media website<br> created by ARMY Team</p>
         </div>
-
+        <footer>
+            <p>&copy; 2024 by ARMY Teem.</p>
+        </footer>
         <!-- Register Form -->
         <!-- <div class="form-box register">
             <h2 class="title animation" style="--i:17; --j:0">Sign Up</h2>
