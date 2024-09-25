@@ -13,8 +13,12 @@
 
         :root {
             --white: #fff;
-            --black: #000; 
+            --black: #000;
             --lightBlue: #17a;
+            --background-light: #f5f8fa;
+            --background-dark: #181818;
+            --text-light: #000;
+            --text-dark: #f0f0f0;
         }
 
         * {
@@ -31,43 +35,45 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            background-color: #f5f8fa;
+            background-color: var(--background-light);
+            color: var(--text-light);
         }
 
- .navbar {
-    background-color: #eff5f8c2;
-    padding: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    border-radius: 10px;
-    width: 100%;
-    margin-top: 20px;
-    padding-left: 20px; 
-}
+        .navbar {
+            background-color: rgba(239, 245, 248, 0.9);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            width: 100%;
+            margin-top: 20px;
+            padding-left: 20px;
+        }
 
-.navbar .site-name {
-    font-weight: bold;
-    color: rgb(34, 2, 2);
-    font-size: 1.5rem; 
-}
+        .navbar .site-name {
+            font-weight: bold;
+            color: rgb(34, 2, 2);
+            font-size: 1.5rem;
+        }
 
-.navbar a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 30px;
-    transition: background-color 0.3s;
-}
+        .navbar a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 30px;
+            transition: background-color 0.3s;
+        }
 
-.navbar a:hover {
-    background-color: rgba(61, 60, 60, 0.2);
-    border-radius: 5px;
-}
-.profile-icon {
+        .navbar a:hover {
+            background-color: rgba(61, 60, 60, 0.2);
+            border-radius: 5px;
+        }
+
+        .profile-icon {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -77,10 +83,9 @@
 
         .wrapper {
             position: relative;
-            background: linear-gradient(#999898d5,#fffafad3) ;
+            background: var(--white);
             width: 30%;
             max-width: 750px;
-            background: var(--white);
             border: 2px solid var(--black);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -101,7 +106,6 @@
             margin-bottom: 10px;
             font-size: 32px;
             color: var(--black);
-            border: #000;
         }
 
         .input-box {
@@ -138,8 +142,8 @@
             pointer-events: none;
         }
 
-        .input:focus + .label,
-        .input:not(:placeholder-shown) + .label {
+        .input:focus+.label,
+        .input:not(:placeholder-shown)+.label {
             bottom: 40px;
             font-size: 12px;
             color: var(--lightBlue);
@@ -186,8 +190,34 @@
             margin-top: auto;
             padding: 20px;
             text-align: center;
-            background-color: #f5f8fa;
+            background-color: var(--background-light);
             width: 100%;
+        }
+
+        /* إعدادات الوضع الداكن */
+        .dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .navbar {
+            background-color: rgba(34, 34, 34, 0.9);
+        }
+
+        .dark-mode .navbar a {
+            color: var(--text-dark);
+        }
+
+        .dark-mode .input {
+            color: var(--text-dark);
+        }
+
+        .dark-mode .button {
+            background-color: var(--text-dark);
+        }
+
+        .dark-mode .button:hover {
+            background-color: var(--lightBlue);
         }
     </style>
 </head>
@@ -201,10 +231,11 @@
             <a href="#">Help</a>
             <a href="#">Terms</a>
             <a href="#">Privacy</a>
+            <button id="theme-toggle">Toggle Theme</button>
 
         </div>
     </div>
-    
+
 
     <div class="wrapper">
         <h1 class="title">Sign Up</h1>
@@ -217,7 +248,7 @@
 
         <form action="" method="POST">
             {% csrf_token %}
-            
+
             <div class="input-box">
                 <input type="text" name="username" id="username" placeholder=" " class="input" required>
                 <label for="username">Username</label>
@@ -234,7 +265,7 @@
                 <input type="password" name="password2" id="password2" placeholder=" " class="input" required>
                 <label for="password2">Confirm Password</label>
             </div>
-        
+
             <button type="submit" class="button">Sign Up</button>
             <div class="linkTxt">
                 <p>Do you have an account? <a href="/signin">Login</a></p>
@@ -245,6 +276,12 @@
     <footer>
         <p>&copy; 2024 by ARMY Teem.</p>
     </footer>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
 
     <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
