@@ -176,31 +176,22 @@
 			cursor: pointer;
 		}
 
-		/* زر الوضع الخفيف */
 		.light-mode .btn {
 			background-color: #007bff;
-			/* لون زر الوضع الخفيف */
 			color: #ffffff;
-			/* لون النص */
 		}
 
-		/* زر الوضع الداكن */
 		.dark-mode .btn {
 			background-color: #343a40;
-			/* لون زر الوضع الداكن */
 			color: #ffffff;
-			/* لون النص */
 		}
 
-		/* نصوص الأزرار الأخرى */
 		.navbar a {
 			color: rgb(0, 0, 0);
-			/* لون النص في الروابط */
 		}
 
 		.dark-mode .navbar a {
 			color: #ffffff;
-			/* لون النص في الروابط في الوضع الداكن */
 		}
 
 		body {
@@ -234,9 +225,7 @@
 			.container {
 				width: 90%;
 				margin-left: auto;
-				/* محاذاة تلقائية */
 				margin-right: auto;
-				/* محاذاة تلقائية */
 			}
 
 			.tto {
@@ -282,14 +271,10 @@
 			transition: background-color 0.3s, color 0.3s;
 		}
 
-		/* وضعية الوضع الداكن */
 		body.dark-mode .feature-photo {
 			background-color: rgba(104, 104, 104, 0.9);
-			/* لون خلفية داكن */
 			color: white;
-			/* لون النص */
 			box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-			/* ظل أخف */
 		}
 
 
@@ -372,16 +357,13 @@
 
 		.add-btn button:hover {
 			background-color: #ff69b4;
-			/* لون أفتح عند التحويم */
 			transform: scale(1.05);
 		}
 
 		.add-btn a {
 			text-decoration: none;
-			/* إزالة خط التسطير */
 		}
 
-		/* إضافة تأثيرات على النصوص عند التحويم */
 		.add-btn span:hover {
 			text-decoration: underline;
 			cursor: pointer;
@@ -414,7 +396,7 @@
 		const toggleTheme = document.getElementById('toggle-theme');
 
 		toggleTheme.addEventListener('click', (event) => {
-			event.preventDefault(); // لمنع الانتقال للرابط
+			event.preventDefault();
 			document.body.classList.toggle('dark-mode');
 			document.body.classList.toggle('light-mode');
 		});
@@ -422,7 +404,6 @@
 
 
 
-	<!--<div class="se-pre-con"></div>-->
 	<div class="theme-layout">
 
 	</div>
@@ -470,28 +451,28 @@
 					<input type="file"/>
 					</label>
 				</form> -->
-			<div class="container-fluid" style="width: 70%; margin-left:50px; height: 150px;">
+			<div class="container-fluid" style=" width: 100%; margin-left:20px; height: 70px;">
 				<div class="row merged">
 					<div class="col-lg-2 col-sm-3">
 						<div class="user-avatar" style="border: none;">
-							<figure>
-								<img src={{user_profile.profileimg.url}} style="height: 100%; width: 100%;" alt="">
+							<figure style="border: none;">
+								<img src={{user_profile.profileimg.url}} style=" width: 220px ;height: 220px;; border: none;" alt="">
 
 							</figure>
 						</div>
 					</div>
 					<div class="col-lg-10 col-sm-9">
-						<!-- <div class="timeline-info" >
-							<ul class="c1">
+						<div class="timeline-info">
+							<ul class="c1" style="margin-bottom:90px;padding-bottom:100px;">
 								<li class="admin-name">
 									<h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;">
 										<b>@{{user_profile.user.username}}</b>
 										<div class="bio">
 											{{user_profile.bio}}
 										</div>
-										<!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>-->
+										<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>
 
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -504,17 +485,11 @@
 	<style>
 		:root {
 			--background-color-light: #ffffff;
-			/* خلفية فاتحة */
 			--background-color-dark: #2a2a2a;
-			/* خلفية داكنة */
 			--text-color-light: #333333;
-			/* لون النص الفاتح */
 			--text-color-dark: #f0f0f0;
-			/* لون النص الداكن */
 			--button-color: #1877f2;
-			/* لون الزر */
 			--button-hover-color: #0e68d1;
-			/* لون أغمق عند التحويم */
 		}
 
 		/* إعدادات عامة للمنشورات */
@@ -603,7 +578,6 @@
 						<div class="row" id="page-contents">
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									<!-- محتوى الشريط الجانبي -->
 								</aside>
 							</div><!-- sidebar -->
 
@@ -624,9 +598,9 @@
 
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									<!-- محتوى الشريط الجانبي -->
+
 								</aside>
-							</div><!-- sidebar -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -669,43 +643,28 @@
 
 		.photos li {
 			margin: 10px;
-			/* مسافة بين الصور */
 			width: calc(33.33% - 20px);
-			/* عرض الصورة (3 صور في الصف) */
 			overflow: hidden;
-			/* قص أي محتوى زائد */
 			border-radius: 10px;
-			/* زوايا دائرية */
 			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-			/* ظل داكن */
 			transition: transform 0.3s;
-			/* تأثير عند التحويم */
 		}
 
 		.photos li:hover {
 			transform: scale(1.05);
-			/* تكبير الصورة عند التحويم */
 		}
 
 		.photo-img {
 			width: 100%;
-			/* جعل الصورة تأخذ كامل العنصر */
 			border-radius: 10px;
-			/* زوايا دائرية للصورة */
 			display: block;
-			/* جعلها كتلة */
 		}
 
-		/* إعدادات الشريط الجانبي */
 		.sidebar {
 			background-color: rgba(255, 255, 255, 0.1);
-			/* خلفية داكنة مع شفافية */
 			border-radius: 10px;
-			/* زوايا دائرية */
 			padding: 20px;
-			/* حشوة داخلية */
 			margin: 20px 0;
-			/* مسافة من العناصر الأخرى */
 		}
 	</style>
 
