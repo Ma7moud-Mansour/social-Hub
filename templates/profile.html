@@ -268,7 +268,7 @@
 
 					<a href="/profile/{{ user.username }}" class="tto"><b>{{ user.username }}</b></a>
 				</div>
-				<img src="{{ user_profile.profileimg.url }}" class="profile-icon" alt="Profile Picture">
+				<img src="{{user_profile.profileimg.url}}" class="profile-icon" alt="Profile Picture">
 			</div>
 		</header>
 	</form>
@@ -395,6 +395,7 @@
 			font-size: 1.2rem;
 			color: #333;
 			line-height: 1.6;
+			width: 50px;
 		}
 
 		M1 {
@@ -469,25 +470,19 @@
 					<input type="file"/>
 					</label>
 				</form> -->
-			<div class="container-fluid">
+			<div class="container-fluid" style="width: 70%; margin-left:50px; height: 150px;">
 				<div class="row merged">
 					<div class="col-lg-2 col-sm-3">
-						<div class="user-avatar">
+						<div class="user-avatar" style="border: none;">
 							<figure>
-								<img src={{user_profile.profileimg.url}} alt="">
-								<form class="edit-phto">
-									<i class="fa fa-camera-retro"></i>
-									<label class="fileContainer">
-										<input type="file" name="image" class="input"
-											onchange="previewBackground(event)" />
-									</label>
-								</form>
+								<img src={{user_profile.profileimg.url}} style="height: 100%; width: 100%;" alt="">
+
 							</figure>
 						</div>
 					</div>
 					<div class="col-lg-10 col-sm-9">
-						<div class="timeline-info">
-							<ul>
+						<!-- <div class="timeline-info" >
+							<ul class="c1">
 								<li class="admin-name">
 									<h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;">
 										<b>@{{user_profile.user.username}}</b>
@@ -496,7 +491,7 @@
 										</div>
 										<!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>-->
 
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -655,6 +650,7 @@
 			--button-hover-color: #0e68d1;
 			/* لون أغمق عند التحويم */
 		}
+
 		/* إعدادات للفراغات */
 		.gap {
 			padding: 20px 0;
