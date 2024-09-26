@@ -257,7 +257,7 @@
 
 					<a href="/profile/{{ user.username }}" class="tto"><b>{{ user.username }}</b></a>
 				</div>
-				<img src="{{user_profile.profileimg.url}}" class="profile-icon" alt="Profile Picture">
+				
 			</div>
 		</header>
 	</form>
@@ -410,7 +410,7 @@
 
 	<section>
 		<div class="feature-photo">
-			<figure><img src="{% static 'images/resources/timeline-1.jpg' %}" alt=""></figure>
+			<figure><img src="{% static 'images/cover.png' %}" alt=""></figure>
 			<form action="/follow" method="POST">
 				{% csrf_token %}
 				<div class="add-btn">
