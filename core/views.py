@@ -56,7 +56,7 @@ def index(request):
     suggestions_username_profile_list = list(chain(*username_profile_list))
 
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_lists , 'suggestions_username_profile_list':suggestions_username_profile_list[:4]})
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list , 'suggestions_username_profile_list':suggestions_username_profile_list[:4]})
 
 @login_required(login_url='signin')
 def upload(request):
