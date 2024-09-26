@@ -60,6 +60,11 @@
             font-size: 1.5rem;
         }
 
+        .dark-mode .navbar .site-name {
+            color: #ffffff;
+        }
+
+
         .navbar a {
             color: rgb(0, 0, 0);
             text-decoration: none;
@@ -84,8 +89,8 @@
         .wrapper {
             position: relative;
             background: var(--white);
-            width: 30%;
-            max-width: 750px;
+            width: 90%;
+            max-width: 550px;
             border: 2px solid var(--black);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -94,6 +99,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .dark-mode .wrapper {
+            background: var(--background-dark);
+            border: 2px solid var(--text-dark);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                width: 95%;
+                padding: 15px;
+                margin-top: 20px;
+            }
         }
 
         .title {
@@ -194,7 +213,11 @@
             width: 100%;
         }
 
-        /* إعدادات الوضع الداكن */
+        .dark-mode footer {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
         .dark-mode {
             background-color: var(--background-dark);
             color: var(--text-dark);
@@ -214,12 +237,41 @@
 
         .dark-mode .button {
             background-color: var(--text-dark);
+            color: #000
         }
 
         .dark-mode .button:hover {
             background-color: var(--lightBlue);
         }
+
+        /* إعدادات الوسائط */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+                /* تقليل الحشو */
+            }
+
+            .navbar .site-name {
+                font-size: 1.2rem;
+                /* تصغير حجم النص */
+            }
+
+            .wrapper {
+                width: 95%;
+                /* جعلها تتناسب أكثر مع شاشة الجوال */
+                padding: 10px;
+                /* تقليل الحشو */
+            }
+
+            .button {
+                height: 40px;
+                /* تقليل ارتفاع الزر */
+            }
+        }
     </style>
+
 </head>
 
 <body>
