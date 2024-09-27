@@ -37,7 +37,6 @@
             margin-top: 40px;
             position: fixed;
             transition: all 0.3s;
-            /* تأثيرات سلسة عند تغيير الحجم */
         }
 
         .nav-left,
@@ -144,7 +143,7 @@
         @media (max-width: 1024px) {
             .site-name {
                 font-size: 1.3rem;
-                /* تصغير حجم الخط للشاشات الأصغر */
+                
             }
         }
 
@@ -153,15 +152,15 @@
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 15px;
-                /* تقليل الحشو */
+                
             }
 
             .nav-right {
                 gap: 10px;
                 width: 100%;
-                /* جعل العناصر تأخذ العرض الكامل */
+                
                 flex-wrap: wrap;
-                /* لف العناصر إذا لزم الأمر */
+                
             }
 
             .search-container {
@@ -171,19 +170,19 @@
 
             .site-name {
                 font-size: 1.2rem;
-                /* تقليل حجم الخط أكثر للشاشات الصغيرة */
+                
             }
         }
 
         @media (max-width: 480px) {
             .navbar {
                 height: auto;
-                /* جعل ارتفاع الشريط مرن */
+                
             }
 
             .site-name {
                 font-size: 1rem;
-                /* تقليل الحجم أكثر */
+                
             }
         }
     </style>
@@ -256,9 +255,6 @@
                                         </div>
                                     </form>
 
-                                    <!-- <a href="#" class="uk-text-muted mt-3 uk-link"
-                uk-toggle="target: .choose-upload ;  animation: uk-animation-slide-right-small, uk-animation-slide-left-medium; queued: true">
-                Or Import Video </a> -->
                                 </div>
 
                                 <div class="uk-flex uk-flex-column choose-upload" hidden>
@@ -421,9 +417,11 @@
                     </div>
 
                     <div uk-lightbox>
+                        {% if post.image.url != none %}
                         <a href="{{post.image.url}}">
                             <img src="{{post.image.url}}" alt="">
                         </a>
+                        {% endif %}
                     </div>
 
                     <div class="py-3 px-4 space-y-3 dark:text-white">
