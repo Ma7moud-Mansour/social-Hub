@@ -586,11 +586,12 @@
 									<ul class="photos">
 										{% for post in user_posts %}
 										<li class="post">
-											
+											{% if post.image.url != none %}
 											<a class="strip" href="{{post.image.url}}" title=""
 												data-strip-group="mygroup" data-strip-group-options="loop: false">
 												<img src="{{post.image.url}}" class="photo-img" alt="">
 											</a>
+											{% endif %}
 										</li>
 										{% endfor %}
 									</ul>
