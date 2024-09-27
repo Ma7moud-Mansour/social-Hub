@@ -249,3 +249,7 @@ def logout(request):
     auth_logout(request)
     request.session.flush()
     return redirect('signin')
+    
+    
+def about_view(request):
+    return render(request, 'about.html')
