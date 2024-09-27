@@ -1,127 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--Font Awesome CDN-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Team Section</title>
     <link rel="stylesheet" href="/static/css/about.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --white: #fff;
+            --black: #000;
+            --lightBlue: #17a;
+            --background-light: #f5f8fa;
+            --background-dark: #181818;
+            --text-light: #000;
+            --text-dark: #f0f0f0;
+            --link-color: blue;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .navbar {
+            background-color: rgba(239, 245, 248, 0.9);
+            padding: 10px 20px;
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .navbar .site-name {
+            font-weight: bold;
+            color: rgb(34, 2, 2);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .dark-mode .navbar .site-name {
+            color: #ffffff;
+        }
+
+        .navbar a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(61, 60, 60, 0.2);
+            border-radius: 5px;
+            transform: scale(1.05);
+        }
+
+        .wrapper {
+            background: var(--white);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-top: 50px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card_Container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .imbBx img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .content {
+            padding: 10px;
+        }
+
+        .contentBx h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .sci {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            background-color: var(--background-light);
+            width: 100%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode footer {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .navbar {
+            background-color: rgba(34, 34, 34, 0.9);
+        }
+
+        .h {
+            border: 0;
+        }
+
+        .dark-mode .navbar a {
+            color: var(--text-dark);
+        }
+
+        .dark-mode .wrapper {
+            background: var(--background-dark);
+        }
+
+        .dark-mode .card {
+            background: var(--black);
+        }
+
+        .dark-mode .card:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .sci a {
+            color: var(--link-color);
+        }
+
+        .title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+
+        .dark-mode .title {
+            color: var(--white);
+        }
+    </style>
+
 </head>
+
 <body>
 
-    <div class="wrapper">
-
-        <div class="title">
-            <h4>@A-R-M-Y Team</h4>
+    <div class="navbar">
+        <div class="site-name">Social Hub</div>
+        <div class="nav-links">
+            <a href="{% url 'about' %}">About</a>
+            <a href="#">Help</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <button id="theme-toggle">Toggle Theme</button>
         </div>
+    </div>
+    <div class="title" style="margin-top: 50px;">
+        <h4>@A-R-M-Y Team</h4>
+    </div>
+    <div class="wrapper" style="margin-top: 20px;width: 1400px; ">
 
-        <div class="card_Container">
-
+        <div class=" card_Container">
             <div class="card">
-
-                <div class="imbBx">
-                    <img src="/static/images/member1.jpg" alt="">
-                </div>
-
-                <div class="content">
-                    <div class="contentBx">
-                        <h3>Abdelrahman Reda <br><span>Front-End Developer</span></h3>
-                    </div>
-                    <ul class="sci">
-                        <li style="--i: 1">
-                            <a href="mailto:abdelrahmanreda4705@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-                        </li>
-                        <li style="--i: 2">
-                            <a href="https://github.com/AbdelrahmanReda47" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        </li>
-                        <li style="--i: 3">
-                            <a href="https://www.linkedin.com/in/abdelrahman-reda-109b39295" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <div class="imbBx">
-                    <img src="/static/images/member2.jpg" alt="">
-                </div>
-
-                <div class="content">
-                    <div class="contentBx">
-                        <h3>Mahmoud Mansour <br><span>Back-End Developer</span></h3>
-                    </div>
-                    <ul class="sci">
-                        <li style="--i: 1">
-                            <a href="mailto:Mahmoudabdelkareem.info@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-                        </li>
-                        <li style="--i: 2">
-                            <a href="https://github.com/Ma7moud-Mansour"  target="_blank"><i class="fa-brands fa-github"></i></a>
-                        </li>
-                        <li style="--i: 3">
-                            <a href="https://www.linkedin.com/in/ma7moud-abdelkareem" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="card">
-
                 <div class="imbBx">
                     <img src="/static/images/member3.jpeg" alt="">
                 </div>
-
                 <div class="content">
                     <div class="contentBx">
                         <h3>Yousef Ali <br><span>Front-End Developer</span></h3>
                     </div>
                     <ul class="sci">
-                        <li style="--i: 1">
-                            <a href="mailto:620220263@fa-hists.edu.eg" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                        <li><a href="mailto:620220263@fa-hists.edu.eg" target="_blank"><i
+                                    class="fa-solid fa-envelope"></i></a></li>
+                        <li><a href="https://github.com/Yousefali13" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a>
                         </li>
-                        <li style="--i: 2">
-                            <a href="https://github.com/Yousefali13" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        </li>
-                        <li style="--i: 3">
-                            <a href="https://www.linkedin.com/in/yousef-ali-abdelkader-20ab082b7"target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                        </li>
+                        <li><a href="https://www.linkedin.com/in/yousef-ali-abdelkader-20ab082b7" target="_blank"><i
+                                    class="fa-brands fa-linkedin-in"></i></a></li>
                     </ul>
                 </div>
-
+            </div>
+            <div class="card">
+                <div class="imbBx">
+                    <img src="/static/images/member1.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="contentBx">
+                        <h3>Abdelrahman Reda <br><span>Front-End Developer</span></h3>
+                    </div>
+                    <ul class="sci">
+                        <li><a href="mailto:abdelrahmanreda4705@gmail.com" target="_blank"><i
+                                    class="fa-solid fa-envelope"></i></a></li>
+                        <li><a href="https://github.com/AbdelrahmanReda47" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/abdelrahman-reda-109b39295" target="_blank"><i
+                                    class="fa-brands fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="card">
+                <div class="imbBx">
+                    <img src="/static/images/member2.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="contentBx">
+                        <h3>Mahmoud Mansour <br><span>Back-End Developer</span></h3>
+                    </div>
+                    <ul class="sci">
+                        <li><a href="mailto:Mahmoudabdelkareem.info@gmail.com" target="_blank"><i
+                                    class="fa-solid fa-envelope"></i></a></li>
+                        <li><a href="https://github.com/Ma7moud-Mansour" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/ma7moud-abdelkareem" target="_blank"><i
+                                    class="fa-brands fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
 
+            
+
+            <div class="card">
                 <div class="imbBx">
                     <img src="/static/images/member4.jpeg" alt="">
                 </div>
-
                 <div class="content">
                     <div class="contentBx">
                         <h3>Radwa Muhemmed <br><span>Back-End Developer</span></h3>
                     </div>
                     <ul class="sci">
-                        <li style="--i: 1">
-                            <a href="mailto:radwamohammad49@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                        <li><a href="mailto:radwamohammad49@gmail.com" target="_blank"><i
+                                    class="fa-solid fa-envelope"></i></a></li>
+                        <li><a href="https://github.com/Radwa110" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a>
                         </li>
-                        <li style="--i: 2">
-                            <a href="https://github.com/Radwa110" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        </li>
-                        <li style="--i: 3">
-                            <a href="https://www.linkedin.com/in/radwa-muhammed-a02700202"target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                        </li>
+                        <li><a href="https://www.linkedin.com/in/radwa-muhammed-a02700202" target="_blank"><i
+                                    class="fa-brands fa-linkedin-in"></i></a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-
     </div>
 
+    <footer>
+        &copy; 2024 Social Hub.by A-R-M-Y.
+    </footer>
+    <script>const toggleButton = document.getElementById('theme-toggle');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
 </body>
+
 </html>
