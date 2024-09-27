@@ -167,7 +167,6 @@
 		.btn {
 			background-color: rgba(165, 42, 42, 0.521);
 			color: #ffffff;
-			/* لون النص في الأزرار */
 			transition: background-color 0.3s;
 		}
 
@@ -247,8 +246,6 @@
 		<header style="margin-top: -23px;">
 			<div class="navbar">
 				<div class="site-name">Social Hub</div>
-				<input type="text" name="username" placeholder="Search..." />
-				<button type="submit"><i class="fa fa-search fa-1x"></i></button>
 				<div class="nav-links">
 					<a href="{% url 'index' %}" class="XX">HOME</a>
 					<a href="/settings">Account Settings</a>
@@ -333,7 +330,6 @@
 			align-items: center;
 			margin: 20px 0;
 			background-color: rgba(0, 0, 0, 0.5);
-			/* خلفية داكنة */
 			padding: 15px;
 			border-radius: 10px;
 		}
@@ -342,7 +338,6 @@
 			color: white;
 			font-size: 1.5rem;
 			margin: 0 10px;
-			/* إضافة مسافة بين العناصر */
 		}
 
 		.add-btn button {
@@ -444,13 +439,7 @@
 				</div>
 			</form>
 
-			<!-- <form class="edit-phto">
-					<i class="fa fa-camera-retro"></i>
-					<label class="fileContainer">
-						Upload Cover Photo
-					<input type="file"/>
-					</label>
-				</form> -->
+
 			<div class="container-fluid" style=" width: 100%; margin-left:20px; height: 70px;">
 				<div class="row merged">
 					<div class="col-lg-2 col-sm-3">
@@ -492,7 +481,6 @@
 			--button-hover-color: #0e68d1;
 		}
 
-		/* إعدادات عامة للمنشورات */
 		.post {
 			background-color: var(--background-color-dark);
 			border-radius: 10px;
@@ -502,12 +490,10 @@
 			transition: box-shadow 0.3s;
 		}
 
-		/* تأثير عند التحويم */
 		.post:hover {
 			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 		}
 
-		/* إعدادات رأس المنشور */
 		.post-header {
 			display: flex;
 			align-items: center;
@@ -526,20 +512,19 @@
 			margin: 0;
 		}
 
-		/* إعدادات محتوى المنشور */
 		.post-content {
 			margin: 15px 0;
 			font-size: 1rem;
 			color: var(--text-color-dark);
 		}
 
-		/* إعدادات الصور داخل المنشور */
+		
 		.post-content img {
 			max-width: 100%;
 			border-radius: 10px;
 		}
 
-		/* إعدادات الأزرار في أسفل المنشور */
+		
 		.post-footer {
 			display: flex;
 			justify-content: space-between;
@@ -560,7 +545,7 @@
 			background-color: var(--button-hover-color);
 		}
 
-		/* إضافة فئات لتغيير الأوضاع */
+		
 		.dark-mode .post {
 			background-color: var(--background-color-dark);
 		}
@@ -611,36 +596,36 @@
 	</section>
 
 	<style>
-		/* إعدادات عامة للصفحة */
+		
 		:root {
 			--background-color-light: #ffffff;
-			/* خلفية فاتحة */
+			
 			--background-color-dark: #2a2a2a;
-			/* خلفية داكنة */
+			
 			--text-color-light: #333333;
-			/* لون النص الفاتح */
+			
 			--text-color-dark: #f0f0f0;
-			/* لون النص الداكن */
+			
 			--button-color: #1877f2;
-			/* لون الزر */
+			
 			--button-hover-color: #0e68d1;
-			/* لون أغمق عند التحويم */
+			
 		}
 
-		/* إعدادات للفراغات */
+		
 		.gap {
 			padding: 20px 0;
 		}
 
-		/* إعدادات الصور */
+		
 		.photos {
 			display: flex;
 			flex-wrap: wrap;
-			/* يسمح بتوزيع الصور */
+			
 			list-style: none;
-			/* إزالة النقاط من القائمة */
+			
 			padding: 0;
-			/* إزالة الحشوة */
+			
 		}
 
 		.photos li {
