@@ -1,0 +1,689 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<title>Profile - {{user_profile.user.username}}</title>
+	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+	<link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/color.css' %}">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<style>
+		.navbar {
+			background-color: #eff5f8c2;
+			padding: 10px 20px;
+			position: relative;
+			margin-top: 0;
+			z-index: 1000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-radius: 10px;
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		.nav-links {
+			display: flex;
+			/* استخدام flex */
+			gap: 20px;
+			/* إضافة gap بين الروابط */
+			margin-left: auto;
+			/* محاذاة الروابط إلى اليمين */
+		}
+
+		.navbar .site-name {
+			font-weight: bold;
+			font-size: 1.5rem;
+			margin-right: auto;
+			padding: 10px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			transition: color 0.3s;
+		}
+
+		.light-mode .navbar .site-name {
+			color: rgb(34, 2, 2);
+		}
+
+		.dark-mode .navbar .site-name {
+			color: #ffffff;
+		}
+
+		.navbar a {
+			color: rgb(0, 0, 0);
+			text-decoration: none;
+			font-weight: bold;
+			padding: 10px 15px;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+		}
+
+		.navbar a:hover {
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+
+		.profile-icon {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			object-fit: cover;
+			margin-left: 20px;
+		}
+
+		.container {
+			margin-top: 20px;
+			margin-left: auto;
+			/* محاذاة تلقائية */
+			margin-right: auto;
+			/* محاذاة تلقائية */
+			height: 100%;
+			width: 600px;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.container:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.search-result-item {
+			border: 1px solid #0c0c0c;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			padding: 15px;
+			margin-bottom: 15px;
+			display: flex;
+		}
+
+		.image-link {
+			margin-right: 15px;
+		}
+
+		.image {
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.search-result-item-body {
+			flex: 1;
+		}
+
+		.search-result-item-heading a {
+			color: rgb(34, 34, 34);
+			text-decoration: none;
+		}
+
+		.search-result-item-heading a:hover {
+			text-decoration: underline;
+		}
+
+		.info {
+			font-weight: bold;
+			margin-right: 100px;
+			color: #666;
+		}
+
+		.description {
+			color: #999;
+		}
+
+		footer {
+			font-size: larger;
+			padding: 10px;
+			text-align: center;
+			width: 100%;
+			margin-top: 145px;
+			bottom: 0;
+			border-top: 2px solid #cccccc62;
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+		.light-mode footer {
+			background-color: #eff5f8c2;
+			color: #333;
+		}
+
+		.dark-mode footer {
+			background-color: #1a1a1a;
+			color: #ffffff;
+		}
+
+
+		.tto {
+			margin-left: 170px;
+			padding: 0px;
+		}
+
+		.btn {
+			background-color: rgba(165, 42, 42, 0.521);
+			color: #ffffff;
+			transition: background-color 0.3s;
+		}
+
+		.btn:hover {
+			background-color: rgba(165, 42, 42, 0.7);
+			cursor: pointer;
+		}
+
+		.light-mode .btn {
+			background-color: #007bff;
+			color: #ffffff;
+		}
+
+		.dark-mode .btn {
+			background-color: #343a40;
+			color: #ffffff;
+		}
+
+		.navbar a {
+			color: rgb(0, 0, 0);
+		}
+
+		.dark-mode .navbar a {
+			color: #ffffff;
+		}
+
+		body {
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+		.light-mode {
+			background-color: #ffffff;
+			color: #000000;
+		}
+
+		.dark-mode {
+			background-color: #121212;
+			color: #ffffff;
+		}
+
+		.dark-mode .navbar {
+			background-color: #1a1a1a;
+		}
+
+		@media (max-width: 768px) {
+			.navbar {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.nav-links {
+				margin-left: 0;
+			}
+
+			.container {
+				width: 90%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.tto {
+				margin-left: 0;
+			}
+
+			.img {
+				border: 0;
+			}
+
+		}
+	</style>
+</head>
+
+<body>
+
+	<form action="search" method="POST">
+		{% csrf_token %}
+		<header style="margin-top: -23px;">
+			<div class="navbar">
+				<div class="site-name">Social Hub</div>
+				<div class="nav-links">
+					<a href="{% url 'index' %}" class="XX">HOME</a>
+					<a href="/settings">Account Settings</a>
+					<a href="/logout" class="btn">Log Out</a>
+					<a href="#" id="toggle-theme" class="theme-toggle">Toggle Theme</a>
+
+					<a href="/profile/{{ user.username }}" class="tto"><b>{{ user.username }}</b></a>
+				</div>
+				
+			</div>
+		</header>
+	</form>
+	<style>
+		.feature-photo {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 15px;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			margin: 10px 0;
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+		body.dark-mode .feature-photo {
+			background-color: rgba(104, 104, 104, 0.9);
+			color: white;
+			box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+		}
+
+
+		.feature-photo img {
+			border-radius: 10px;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.add-btn {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 20px 0;
+		}
+
+		.add-btn span {
+			color: white;
+			font-size: 1.5rem;
+		}
+
+		.add-btn button {
+			background-color: #ffc0cb;
+			border: none;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+
+		.add-btn button:hover {
+			background-color: var(--lightBlue);
+			transform: scale(1.05);
+		}
+
+		.user-avatar img {
+			margin-top: 20%;
+			border-radius: 10%;
+			border: 0;
+			max-width: 100%;
+			margin-bottom: 80px;
+			height: 100%;
+
+		}
+
+		.timeline-info h5 {
+			color: black;
+			font-size: 1.8rem;
+			margin-bottom: 10px;
+		}
+
+		.add-btn {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 20px 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			padding: 15px;
+			border-radius: 10px;
+		}
+
+		.add-btn span {
+			color: white;
+			font-size: 1.5rem;
+			margin: 0 10px;
+		}
+
+		.add-btn button {
+			background-color: #ffc0cb;
+			border: none;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: background-color 0.3s, transform 0.3s;
+		}
+
+		.add-btn button:hover {
+			background-color: #ff69b4;
+			transform: scale(1.05);
+		}
+
+		.add-btn a {
+			text-decoration: none;
+		}
+
+		.add-btn span:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+		.bio {
+			padding-bottom: 100px;
+			margin-top: 0;
+
+			margin-bottom: 5px;
+			font-size: 1.2rem;
+			color: #333;
+			line-height: 1.6;
+			width: 50px;
+		}
+
+		M1 {
+			margin-top: 40px;
+		}
+
+		figure {
+			border: 0;
+		}
+
+		.container-fluid {
+			border: 0;
+		}
+	</style>
+	<script>
+		const toggleTheme = document.getElementById('toggle-theme');
+
+		toggleTheme.addEventListener('click', (event) => {
+			event.preventDefault();
+			document.body.classList.toggle('dark-mode');
+			document.body.classList.toggle('light-mode');
+		});
+	</script>
+
+
+
+	<div class="theme-layout">
+
+	</div>
+
+	<section>
+		<div class="feature-photo">
+			<figure><img src="{% static 'images/cover.png' %}" alt=""></figure>
+			<form action="/follow" method="POST">
+				{% csrf_token %}
+				<div class="add-btn">
+
+
+					<!-- User posts section  -->
+					{% if user_post_length == 0 %}
+					<span><b>No Posts</b></span>
+					{% elif user_post_length == 1 %}
+					<span><b>{{user_post_length}} Post</b></span>
+					{% else %}
+					<span><b>{{user_post_length}} Posts</b></span>
+					{% endif %}
+					<!--  -->
+
+					{% if user_followers == 0 or user_followers == 1 %}
+					<span><b>{{user_followers}} follower </b></span>
+					{% else %}
+					<span><b>{{user_followers}} followers</b></span>
+					{% endif %}
+
+					<span><b>{{user_following}} following</b></span>
+					<input type="hidden" value="{{user.username}}" name="follower" />
+					<input type="hidden" value="{{user_object.username}}" name="user" />
+
+					{% if user_object.username == user.username %}
+					<a href="/settings" data-ripple=""><button type="button">Account Settings</button></a>
+					{% else %}
+					<a data-ripple=""><button type="submit">{{button_text}}</button></a>
+					{% endif %}
+				</div>
+			</form>
+
+
+			<div class="container-fluid" style=" width: 100%; margin-left:20px; height: 70px;">
+				<div class="row merged">
+					<div class="col-lg-2 col-sm-3">
+						<div class="user-avatar" style="border: none;">
+							<figure style="border: none;">
+								<img src={{user_profile.profileimg.url}} style=" width: 220px ;height: 220px;; border: none;" alt="">
+
+							</figure>
+						</div>
+					</div>
+					<div class="col-lg-10 col-sm-9">
+						<div class="timeline-info">
+							<ul class="c1" style="margin-bottom:90px;padding-bottom:100px;">
+								<li class="admin-name">
+									<h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;">
+										<b>@{{user_profile.user.username}}</b>
+										<div class="bio">
+											{{user_profile.bio}}
+										</div>
+										<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</section><!-- top area -->
+
+	<style>
+		:root {
+			--background-color-light: #ffffff;
+			--background-color-dark: #2a2a2a;
+			--text-color-light: #333333;
+			--text-color-dark: #f0f0f0;
+			--button-color: #1877f2;
+			--button-hover-color: #0e68d1;
+		}
+
+		.post {
+			background-color: var(--background-color-dark);
+			border-radius: 10px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			margin: 20px 0;
+			padding: 15px;
+			transition: box-shadow 0.3s;
+		}
+
+		.post:hover {
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+		}
+
+		.post-header {
+			display: flex;
+			align-items: center;
+		}
+
+		.post-header img {
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			margin-right: 10px;
+		}
+
+		.post-header h5 {
+			font-size: 1.2rem;
+			color: var(--text-color-dark);
+			margin: 0;
+		}
+
+		.post-content {
+			margin: 15px 0;
+			font-size: 1rem;
+			color: var(--text-color-dark);
+		}
+
+		
+		.post-content img {
+			max-width: 100%;
+			border-radius: 10px;
+		}
+
+		
+		.post-footer {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+		}
+
+		.post-footer button {
+			background-color: var(--button-color);
+			color: #fff;
+			border: none;
+			border-radius: 20px;
+			padding: 8px 15px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		.post-footer button:hover {
+			background-color: var(--button-hover-color);
+		}
+
+		
+		.dark-mode .post {
+			background-color: var(--background-color-dark);
+		}
+
+		.dark-mode .post-header h5,
+		.dark-mode .post-content {
+			color: var(--text-color-dark);
+		}
+	</style>
+	<section>
+		<div class="gap gray-bg">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row" id="page-contents">
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+								</aside>
+							</div><!-- sidebar -->
+
+							<div class="col-lg-6">
+								<div class="central-meta">
+									<ul class="photos">
+										{% for post in user_posts %}
+										<li class="post">
+											{% if post.image.url != none %}
+											<a class="strip" href="{{post.image.url}}" title=""
+												data-strip-group="mygroup" data-strip-group-options="loop: false">
+												<img src="{{post.image.url}}" class="photo-img" alt="">
+											</a>
+											{% endif %}
+										</li>
+										{% endfor %}
+									</ul>
+								</div><!-- photos -->
+							</div><!-- central meta -->
+
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		
+		:root {
+			--background-color-light: #ffffff;
+			
+			--background-color-dark: #2a2a2a;
+			
+			--text-color-light: #333333;
+			
+			--text-color-dark: #f0f0f0;
+			
+			--button-color: #1877f2;
+			
+			--button-hover-color: #0e68d1;
+			
+		}
+
+		
+		.gap {
+			padding: 20px 0;
+		}
+
+		
+		.photos {
+			display: flex;
+			flex-wrap: wrap;
+			
+			list-style: none;
+			
+			padding: 0;
+			
+		}
+
+		.photos li {
+			margin: 10px;
+			width: calc(33.33% - 20px);
+			overflow: hidden;
+			border-radius: 10px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+			transition: transform 0.3s;
+		}
+
+		.photos li:hover {
+			transform: scale(1.05);
+		}
+
+		.photo-img {
+			width: 100%;
+			border-radius: 10px;
+			display: block;
+		}
+
+		.sidebar {
+			background-color: rgba(255, 255, 255, 0.1);
+			border-radius: 10px;
+			padding: 20px;
+			margin: 20px 0;
+		}
+	</style>
+
+
+
+	<script>
+		function previewBackground(event) {
+			const file = event.target.files[0];
+			if (file) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					document.body.style.backgroundImage = `url(${e.target.result})`;
+					document.body.style.backgroundSize = 'cover';
+					document.body.style.backgroundPosition = 'center';
+					document.body.style.backgroundRepeat = 'no-repeat';
+
+					// Update the profile icon
+					document.getElementById('profile-icon').src = e.target.result;
+				};
+				reader.readAsDataURL(file);
+			}
+		}
+	</script>
+
+	<script data-cfasync="false"
+		src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+	<script src="{% static 'js/main.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+	<footer>
+		<p>&copy; 2024 by A-R-M-Y Teem.</p>
+	</footer>
+</body>
+
+
+</html>
